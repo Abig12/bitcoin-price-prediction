@@ -6,7 +6,7 @@ A Flask-based web application for analyzing and predicting Bitcoin price movemen
 - **Data Analysis**: Explore raw and processed Bitcoin trading data with summary statistics and correlation matrices.
 - **Interactive Visualizations**: View price trends, candlestick charts, volatility analysis, and more using Plotly.
 - **Price Prediction**: Predict whether the Bitcoin price will increase (Buy) or decrease (Sell) using a Random Forest model.
-- **User-Friendly Interface**: Built with Flask, HTML, CSS, and JavaScript for a seamless user experience.
+- **User-Friendly Interface**: Built with Flask, HTML, CSS, anda JavaScript for a seamless user experience.
 
 ## Installation
 1. Clone the repository:
