@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static', filename='css/styles.css') }}"
+    />
+    <link
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <title>Results</title>
+  </head>
+  <body>
+    <div class="container">
+      <h1 class="mt-4">Prediction Results</h1>
+      <div>
+        <h2>Summary Statistics</h2>
+        {{ desc|safe }}
+      </div>
+      <a href="/" class="btn btn-secondary mt-3">Back to EDA</a>
+    </div>
+  </body>
+</html>

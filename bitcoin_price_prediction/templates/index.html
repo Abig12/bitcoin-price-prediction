@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Bitcoin Price Analysis & Prediction</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+    />
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static', filename='css/styles.css') }}"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"
+    />
+  </head>
+  <body>
+    <nav class="navbar navbar-expand-lg navbar-dark">
+      <div class="container">
+        <a class="navbar-brand" href="#">
+          <i class="fab fa-bitcoin mr-2"></i>Bitcoin Analytics
+        </a>
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-toggle="collapse"
+          data-target="#navbarNav"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+          <ul class="navbar-nav ml-auto">
+            <li class="nav-item active">
+              <a class="nav-link" href="/"
+                ><i class="fas fa-home mr-1"></i>Home</a
+              >
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="/visualizations"
+                ><i class="fas fa-chart-line mr-1"></i>Visualizations</a
+              >
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+
+    <div class="hero">
+      <div class="container">
+        <h1 class="display-4 text-center">
+          Bitcoin Price Analysis & Prediction
+        </h1>
+        <p class="lead text-center">
+          Comprehensive analysis of Bitcoin price movements with advanced
+          prediction capabilities
+        </p>
+      </div>
+    </div>
+
+    <div class="container">
+      <!-- Data Overview Section -->
+      <div class="row mb-4">
+        <div class="col-md-4">
+          <div class="stat-card">
+            <i class="fas fa-database fa-2x mb-3"></i>
+            <div class="stat-value">{{ data_info.raw_shape[0] }}</div>
+            <div class="stat-label">Total Records</div>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="stat-card">
+            <i class="fas fa-plus-circle fa-2x mb-3"></i>
+            <div class="stat-value">{{ data_info.new_features|length }}</div>
+            <div class="stat-label">Added Features</div>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="stat-card">
+            <i class="fas fa-chart-pie fa-2x mb-3"></i>
+            <div class="stat-value">{{ data_info.processed_shape[1] }}</div>
+            <div class="stat-label">Total Features</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Raw Data Analysis -->
+      <div class="card mb-4">
+        <div class="card-header">
+          <h2 class="card-title">
+            <i class="fas fa-table mr-2"></i>Raw Data Analysis
+          </h2>
+        </div>
+        <div class="card-body">
+          <h3>Statistical Summary</h3>
+          <div class="table-responsive">{{ raw_desc|safe }}</div>
+          <h3 class="mt-4">Correlation Matrix</h3>
+          <div class="table-responsive">{{ raw_corr|safe }}</div>
+        </div>
+      </div>
+
+      <!-- Processed Data Analysis -->
+      <div class="card mb-4">
+        <div class="card-header">
+          <h2 class="card-title">
+            <i class="fas fa-cogs mr-2"></i>Processed Data Analysis
+          </h2>
+        </div>
+        <div class="card-body">
+          <h3>Statistical Summary</h3>
+          <div class="table-responsive">{{ processed_desc|safe }}</div>
+          <h3 class="mt-4">Correlation Matrix</h3>
+          <div class="table-responsive">{{ processed_corr|safe }}</div>
+        </div>
+      </div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+  </body>
+</html>

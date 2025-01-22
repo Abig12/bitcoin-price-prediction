@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Bitcoin Price Visualizations</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+    />
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static', filename='css/styles.css') }}"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"
+    />
+    <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+  </head>
+  <body>
+    <nav class="navbar navbar-expand-lg navbar-dark">
+      <div class="container">
+        <a class="navbar-brand" href="#">
+          <i class="fab fa-bitcoin mr-2"></i>Bitcoin Analytics
+        </a>
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-toggle="collapse"
+          data-target="#navbarNav"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+          <ul class="navbar-nav ml-auto">
+            <li class="nav-item">
+              <a class="nav-link" href="/"
+                ><i class="fas fa-home mr-1"></i>Home</a
+              >
+            </li>
+            <li class="nav-item active">
+              <a class="nav-link" href="/visualizations"
+                ><i class="fas fa-chart-line mr-1"></i>Visualizations</a
+              >
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+
+    <div class="container mt-4">
+      <!-- Price Trend Section -->
+      <div class="card mb-4">
+        <div class="card-header">
+          <h2 class="card-title">
+            <i class="fas fa-chart-line mr-2"></i>Price Trend Analysis
+          </h2>
+        </div>
+        <div class="card-body">
+          <div id="price-trend"></div>
+        </div>
+      </div>
+
+      <!-- Candlestick Chart Section -->
+      <div class="card mb-4">
+        <div class="card-header">
+          <h2 class="card-title">
+            <i class="fas fa-chart-bar mr-2"></i>Price & Volume Analysis
+          </h2>
+        </div>
+        <div class="card-body">
+          <div id="candlestick-chart"></div>
+        </div>
+      </div>
+
+      <!-- Volatility Chart Section -->
+      <div class="card mb-4">
+        <div class="card-header">
+          <h2 class="card-title">
+            <i class="fas fa-wave-square mr-2"></i>Volatility Analysis
+          </h2>
+        </div>
+        <div class="card-body">
+          <div id="volatility-chart"></div>
+        </div>
+      </div>
+
+      <!-- Price Distribution Section -->
+      <div class="card mb-4">
+        <div class="card-header">
+          <h2 class="card-title">
+            <i class="fas fa-box-plot mr-2"></i>Yearly Price Distribution
+          </h2>
+        </div>
+        <div class="card-body">
+          <div id="distribution-chart"></div>
+        </div>
+      </div>
+
+      <!-- Hourly Analysis Section -->
+      <div class="card mb-4">
+        <div class="card-header">
+          <h2 class="card-title">
+            <i class="fas fa-clock mr-2"></i>Hourly Price Analysis
+          </h2>
+        </div>
+        <div class="card-body">
+          <div id="hourly-chart"></div>
+        </div>
+      </div>
+
+      <!-- Prediction Form Section -->
+      <div class="card mb-4">
+        <div class="card-header">
+          <h2 class="card-title">
+            <i class="fas fa-robot mr-2"></i>Price Prediction
+          </h2>
+        </div>
+        <div class="card-body">
+          <form id="prediction-form">
+            <div class="form-row">
+              <div class="col-md">
+                <div class="form-group">
+                  <label>Open Price</label>
+                  <input
+                    type="number"
+                    class="form-control"
+                    name="Open"
+                    required
+                    step="any"
+                  />
+                </div>
+              </div>
+              <div class="col-md">
+                <div class="form-group">
+                  <label>High Price</label>
+                  <input
+                    type="number"
+                    class="form-control"
+                    name="High"
+                    required
+                    step="any"
+                  />
+                </div>
+              </div>
+              <div class="col-md">
+                <div class="form-group">
+                  <label>Low Price</label>
+                  <input
+                    type="number"
+                    class="form-control"
+                    name="Low"
+                    required
+                    step="any"
+                  />
+                </div>
+              </div>
+              <div class="col-md">
+                <div class="form-group">
+                  <label>Close Price</label>
+                  <input
+                    type="number"
+                    class="form-control"
+                    name="Close"
+                    required
+                    step="any"
+                  />
+                </div>
+              </div>
+              <div class="col-md">
+                <div class="form-group">
+                  <label>Volume (BTC)</label>
+                  <input
+                    type="number"
+                    class="form-control"
+                    name="Volume_(BTC)"
+                    required
+                    step="any"
+                  />
+                </div>
+              </div>
+            </div>
+            <button type="submit" class="btn btn-primary">
+              <i class="fas fa-magic mr-2"></i>Make Prediction
+            </button>
+          </form>
+          <div id="prediction-result" class="mt-4"></div>
+        </div>
+      </div>
+    </div>
+
+    <script>
+      // Initialize all charts
+      const visualizations = {{ visualizations|tojson|safe }};
+
+      Plotly.newPlot('price-trend', JSON.parse(visualizations.trend).data, JSON.parse(visualizations.trend).layout);
+      Plotly.newPlot('candlestick-chart', JSON.parse(visualizations.candlestick).data, JSON.parse(visualizations.candlestick).layout);
+      Plotly.newPlot('volatility-chart', JSON.parse(visualizations.volatility).data, JSON.parse(visualizations.volatility).layout);
+      Plotly.newPlot('distribution-chart', JSON.parse(visualizations.distribution).data, JSON.parse(visualizations.distribution).layout);
+      Plotly.newPlot('hourly-chart', JSON.parse(visualizations.hourly).data, JSON.parse(visualizations.hourly).layout);
+    </script>
+
+    <script src="{{ url_for('static', filename='js/scripts.js') }}"></script>
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+  </body>
+</html>
