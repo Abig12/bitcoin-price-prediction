@@ -48,10 +48,10 @@ The dataset used in this project is `BitstampData_sample.csv`, which contains hi
 
 ## Screenshots
 ### Homepage
-![Image](https://github.com/user-attachments/assets/f073d091-b550-4a1d-9980-aabd48376f08)
+![Image](https://github.com/user-attachments/assets/39e5adfa-3733-4bd6-8366-d45a40c1888e)
 
 ### Visualizations
-![Image](https://github.com/user-attachments/assets/39e5adfa-3733-4bd6-8366-d45a40c1888e)
+![Image](https://github.com/user-attachments/assets/f073d091-b550-4a1d-9980-aabd48376f08)
 
 ### Prediction Form
 ![Image](https://github.com/user-attachments/assets/2087346b-b14e-4b34-aa33-9974c4ec3f1f)
